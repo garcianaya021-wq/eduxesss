@@ -1,0 +1,1474 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EducSex Villa Victoria</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    :root {
+      --verde: #27bd70;
+      --verde-oscuro: #126b45;
+      --verde-claro: #dff9e9;
+      --rosa: #ef4386;
+      --rosa-claro: #fff0f5;
+      --fondo: #fffafa;
+      --texto: #202b32;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--fondo);
+      color: var(--texto);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .navbar {
+      background: white;
+      border-bottom: 1px solid #e8eee9;
+      box-shadow: 0 3px 12px #00000008;
+    }
+
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .brand-name {
+      color: var(--verde-oscuro);
+      font-weight: 800;
+      line-height: 1.05;
+    }
+
+    .brand-name small {
+      display: block;
+      color: var(--rosa);
+      font-size: 12px;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .nav-link:hover { color: var(--rosa) !important; }
+
+    .btn-verde {
+      background: linear-gradient(110deg, #48d47c, #20b96b);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      padding: 11px 20px;
+    }
+
+    .btn-verde:hover {
+      color: white;
+      background: var(--verde-oscuro);
+    }
+
+    .btn-rosa {
+      background: linear-gradient(110deg, #f45191, #e83379);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      padding: 11px 20px;
+    }
+
+    .btn-rosa:hover { color: white; background: #d52d6d; }
+
+    .btn-outline-rosa {
+      border: 1px solid var(--rosa);
+      color: var(--rosa);
+      border-radius: 12px;
+      font-weight: 700;
+    }
+
+    .btn-outline-rosa:hover {
+      background: var(--rosa);
+      color: white;
+    }
+
+    .pantalla {
+      display: none;
+      min-height: calc(100vh - 75px);
+      padding: 38px 0 55px;
+      animation: aparecer .25s ease;
+    }
+
+    .pantalla.activa { display: block; }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .contenedor { max-width: 1150px; margin: auto; }
+
+    .hero {
+      background: linear-gradient(125deg, #fff0f5, #f0fff5);
+      border-radius: 28px;
+      padding: 45px 35px;
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      color: var(--verde-oscuro);
+      font-weight: 900;
+      line-height: 1.06;
+    }
+
+    .hero p { line-height: 1.7; }
+
+    .hero-img {
+      width: 100%;
+      height: 330px;
+      object-fit: contain;
+      border-radius: 20px;
+    }
+
+    .seccion-titulo {
+      font-weight: 850;
+      color: var(--verde-oscuro);
+    }
+
+    .tarjeta {
+      height: 100%;
+      background: white;
+      border: 1px solid #edf0ed;
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 5px 20px #173c2610;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .tarjeta:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 9px 24px #173c2618;
+    }
+
+    .icono-modulo {
+      width: 62px;
+      height: 62px;
+      display: grid;
+      place-items: center;
+      background: var(--rosa-claro);
+      color: var(--rosa);
+      font-size: 30px;
+      border-radius: 18px;
+      margin-bottom: 16px;
+    }
+
+    .form-card {
+      max-width: 470px;
+      margin: auto;
+      background: white;
+      padding: 35px;
+      border-radius: 24px;
+      box-shadow: 0 8px 30px #0000000c;
+    }
+
+    .form-control, .form-select {
+      border-radius: 11px;
+      padding: 12px;
+      border-color: #d9e1dd;
+    }
+
+    .form-control:focus, .form-select:focus {
+      border-color: var(--verde);
+      box-shadow: 0 0 0 .2rem #27bd7020;
+    }
+
+    .titulo-modulo {
+      background: linear-gradient(100deg, #e0f9e8, #fff0f6);
+      border-radius: 18px;
+      padding: 22px;
+      margin-bottom: 25px;
+    }
+
+    .lista-temas .list-group-item {
+      padding: 16px;
+      border: 1px solid #edf0ed;
+      border-radius: 12px !important;
+      margin-bottom: 9px;
+      cursor: pointer;
+    }
+
+    .lista-temas .list-group-item:hover {
+      background: var(--rosa-claro);
+    }
+
+    .etiqueta {
+      display: inline-block;
+      padding: 8px 15px;
+      border-radius: 10px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .mito { background: #ffe3ed; color: #ba2860; }
+    .realidad { background: #dff9e9; color: #126b45; }
+
+    .imagen-centro {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 16px;
+      background: #e5f8ec;
+    }
+
+    .mapa {
+      min-height: 280px;
+      background: linear-gradient(135deg, #e3f7e9, #edf4ff);
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 25px;
+    }
+
+    .mapa i { font-size: 55px; color: var(--rosa); }
+
+    .chat-area {
+      height: 360px;
+      overflow-y: auto;
+      background: #f8faf9;
+      border: 1px solid #edf0ed;
+      padding: 18px;
+      border-radius: 17px;
+    }
+
+    .mensaje {
+      max-width: 88%;
+      padding: 13px 16px;
+      border-radius: 16px;
+      margin-bottom: 12px;
+      white-space: pre-wrap;
+    }
+
+    .mensaje-bot {
+      background: #eaf0ee;
+      border-top-left-radius: 4px;
+    }
+
+    .mensaje-usuario {
+      background: #d8f8e3;
+      margin-left: auto;
+      border-top-right-radius: 4px;
+    }
+
+    .progreso {
+      height: 10px;
+      background: #e6eae7;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .progreso div {
+      height: 100%;
+      background: var(--verde);
+      transition: width .2s;
+    }
+
+    .respuesta {
+      display: block;
+      padding: 13px;
+      border: 1px solid #dfe5e1;
+      border-radius: 12px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .respuesta:hover { background: #f0fff5; }
+
+    .respuesta.seleccionada {
+      background: #dff9e9;
+      border-color: var(--verde);
+    }
+
+    .respuesta.correcta {
+      background: #d5f6df;
+      border-color: #20a75c;
+    }
+
+    .respuesta.incorrecta {
+      background: #ffe1e8;
+      border-color: #e94c71;
+    }
+
+    .resultado-icono {
+      font-size: 75px;
+      color: #efb529;
+    }
+
+    .pie {
+      background: #fff;
+      border-top: 1px solid #e8eee9;
+      padding: 24px 12px;
+      text-align: center;
+      color: #6c7771;
+    }
+
+    .alerta {
+      border-radius: 12px;
+      padding: 14px;
+      background: var(--rosa-claro);
+      color: #74384e;
+    }
+
+    @media (max-width: 767px) {
+      .pantalla { padding: 22px 12px 35px; }
+      .hero { padding: 28px 20px; }
+      .hero-img { height: 230px; }
+      .form-card { padding: 25px 20px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2"
+       href="#" onclick="ir('inicio'); return false;">
+      <img src="logo.jpg" class="brand-logo"
+           alt="Logo EducSex"
+           onerror="this.style.display='none'">
+      <span class="brand-name">
+        EducSex
+        <small>Villa Victoria</small>
+      </span>
+    </a>
+
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navegacion">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navegacion">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+        <li class="nav-item">
+          <a class="nav-link" onclick="ir('inicio')">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" onclick="ir('menu')">Módulos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" onclick="ir('nosotros')">Sobre nosotros</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" onclick="ir('contacto')">Contacto</a>
+        </li>
+        <li class="nav-item" id="accesoNav">
+          <button class="btn btn-outline-rosa btn-sm"
+                  onclick="ir('login')">Iniciar sesión</button>
+        </li>
+        <li class="nav-item" id="registroNav">
+          <button class="btn btn-rosa btn-sm"
+                  onclick="ir('registro')">Registrarse</button>
+        </li>
+        <li class="nav-item d-none" id="usuarioNav">
+          <button class="btn btn-outline-success btn-sm"
+                  onclick="ir('menu')" id="nombreUsuarioNav">
+            Mi cuenta
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<section id="inicio" class="pantalla activa">
+  <div class="container contenedor">
+    <div class="hero">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-6">
+          <span class="badge rounded-pill text-bg-success mb-3">
+            Educación · Prevención · Bienestar
+          </span>
+          <h1>Información para un futuro más consciente</h1>
+          <p class="mt-3">
+            Plataforma de orientación juvenil sobre salud sexual,
+            embarazo adolescente, métodos anticonceptivos y relaciones
+            saludables, con información y recursos de apoyo en
+            Villa Victoria.
+          </p>
+          <button class="btn btn-rosa btn-lg" onclick="ir('login')">
+            Comenzar <i class="bi bi-arrow-right"></i>
+          </button>
+          <button class="btn btn-outline-rosa btn-lg ms-2"
+                  onclick="entrarVisitante()">Explorar</button>
+        </div>
+        <div class="col-lg-6">
+          <img src="estudiantes.jpg"
+               class="hero-img"
+               alt="Jóvenes estudiantes"
+               onerror="respaldoImagen(this,'bi-people')">
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-3 mt-3">
+      <div class="col-6 col-lg-3">
+        <div class="tarjeta text-center" role="button"
+             onclick="ir('mitos')">
+          <div class="icono-modulo mx-auto"><i class="bi bi-book"></i></div>
+          <h6 class="fw-bold">Mitos y realidades</h6>
+          <small>Aprende con información confiable.</small>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="tarjeta text-center" role="button"
+             onclick="ir('centros')">
+          <div class="icono-modulo mx-auto"><i class="bi bi-geo-alt"></i></div>
+          <h6 class="fw-bold">Centros de salud</h6>
+          <small>Encuentra opciones de atención.</small>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="tarjeta text-center" role="button"
+             onclick="ir('chat')">
+          <div class="icono-modulo mx-auto"><i class="bi bi-chat-dots"></i></div>
+          <h6 class="fw-bold">Chat de orientación</h6>
+          <small>Consulta temas de salud.</small>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="tarjeta text-center" role="button"
+             onclick="iniciarTest()">
+          <div class="icono-modulo mx-auto"><i class="bi bi-clipboard-check"></i></div>
+          <h6 class="fw-bold">Test de conocimientos</h6>
+          <small>Pon a prueba lo aprendido.</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="login" class="pantalla">
+  <div class="container">
+    <div class="form-card">
+      <div class="text-center mb-4">
+        <i class="bi bi-person-circle display-3 text-success"></i>
+        <h2 class="fw-bold mt-2">Iniciar sesión</h2>
+        <p class="text-secondary">Bienvenido a EducSex</p>
+      </div>
+      <form onsubmit="iniciarSesion(event)">
+        <label class="form-label">Correo electrónico</label>
+        <input id="loginCorreo" class="form-control mb-3"
+               type="email" placeholder="ejemplo@correo.com" required>
+
+        <label class="form-label">Contraseña</label>
+        <input id="loginPassword" class="form-control mb-3"
+               type="password" minlength="4" placeholder="Tu contraseña"
+               required>
+
+        <button class="btn btn-verde w-100 mt-2">Iniciar sesión</button>
+      </form>
+      <p id="loginMensaje" class="small mt-3" aria-live="polite"></p>
+      <div class="text-center mt-3">
+        <a href="#" onclick="ir('registro');return false;">Crear cuenta</a>
+        <hr>
+        <button class="btn btn-outline-rosa w-100"
+                onclick="entrarVisitante()">Entrar como visitante</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="registro" class="pantalla">
+  <div class="container">
+    <div class="form-card">
+      <div class="text-center mb-4">
+        <i class="bi bi-person-add display-3" style="color:var(--rosa)"></i>
+        <h2 class="fw-bold mt-2">Crear cuenta</h2>
+        <p class="text-secondary">Únete a nuestra comunidad educativa</p>
+      </div>
+      <form onsubmit="registrar(event)">
+        <label class="form-label">Nombre completo</label>
+        <input id="regNombre" class="form-control mb-3"
+               placeholder="Tu nombre" required maxlength="80">
+
+        <label class="form-label">Edad</label>
+        <input id="regEdad" class="form-control mb-3"
+               type="number" min="10" max="100"
+               placeholder="Tu edad" required>
+
+        <label class="form-label">Correo electrónico</label>
+        <input id="regCorreo" class="form-control mb-3"
+               type="email" placeholder="ejemplo@correo.com" required>
+
+        <label class="form-label">Contraseña</label>
+        <input id="regPassword" class="form-control mb-3"
+               type="password" minlength="4"
+               placeholder="Crea una contraseña" required>
+
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox"
+                 id="acepto" required>
+          <label class="form-check-label small" for="acepto">
+            Acepto los términos de uso y el aviso de privacidad.
+          </label>
+        </div>
+
+        <button class="btn btn-rosa w-100">Crear cuenta</button>
+      </form>
+      <p id="registroMensaje" class="small mt-3" aria-live="polite"></p>
+      <p class="text-center mt-3 small">
+        ¿Ya tienes cuenta?
+        <a href="#" onclick="ir('login');return false;">Inicia sesión</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<section id="menu" class="pantalla">
+  <div class="container contenedor">
+    <div class="hero mb-4">
+      <div class="row align-items-center">
+        <div class="col-md-7">
+          <h1 style="font-size:2.6rem">¡Bienvenida, <span id="saludoNombre">visitante</span>!</h1>
+          <p>
+            Aquí encontrarás información educativa y herramientas de
+            apoyo para tomar decisiones informadas sobre tu salud.
+          </p>
+          <p class="text-secondary small">
+            Aprende a tu ritmo. Consulta fuentes confiables y busca
+            orientación profesional cuando la necesites.
+          </p>
+        </div>
+        <div class="col-md-5 text-center">
+          <img src="estudiantes.jpg"
+               class="hero-img" style="height:210px"
+               alt="Estudiantes"
+               onerror="respaldoImagen(this,'bi-people')">
+        </div>
+      </div>
+    </div>
+
+    <h3 class="seccion-titulo mb-3">Explora nuestros módulos</h3>
+    <div class="row g-3">
+      <div class="col-md-6 col-lg-3">
+        <div class="tarjeta" role="button" tabindex="0"
+            onclick="ir('mitos')">
+          <div class="icono-modulo"><i class="bi bi-book-half"></i></div>
+          <h5 class="fw-bold">Mitos y realidades</h5>
+          <p class="small">Distingue los mitos de la información basada en evidencia.</p>
+          <span class="text-success fw-bold">Explorar →</span>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="tarjeta" role="button" onclick="ir('centros')">
+          <div class="icono-modulo"><i class="bi bi-geo-alt-fill"></i></div>
+          <h5 class="fw-bold">Centros de salud</h5>
+          <p class="small">Consulta recursos para buscar servicios de atención.</p>
+          <span class="text-success fw-bold">Ver centros →</span>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="tarjeta" role="button" onclick="ir('chat')">
+          <div class="icono-modulo"><i class="bi bi-chat-dots"></i></div>
+          <h5 class="fw-bold">Chat de orientación</h5>
+          <p class="small">Explora respuestas educativas a preguntas frecuentes.</p>
+          <span class="text-success fw-bold">Conversar →</span>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="tarjeta" role="button" onclick="iniciarTest()">
+          <div class="icono-modulo"><i class="bi bi-clipboard-check"></i></div>
+          <h5 class="fw-bold">Test de conocimientos</h5>
+          <p class="small">Comprueba lo que sabes con preguntas educativas.</p>
+          <span class="text-success fw-bold">Comenzar →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="alerta mt-4">
+      <i class="bi bi-heart-pulse"></i>
+      <strong>Recuerda:</strong> informarte es un primer paso.
+      Para recibir diagnóstico o atención médica, acude con personal de salud.
+    </div>
+    <button class="btn btn-outline-secondary mt-3"
+            onclick="cerrarSesion()">Cerrar sesión</button>
+  </div>
+</section>
+
+
+<section id="mitos" class="pantalla">
+  <div class="container contenedor">
+    <div class="titulo-modulo">
+      <div class="d-flex align-items-center gap-3">
+        <i class="bi bi-book-half fs-1" style="color:var(--rosa)"></i>
+        <div>
+          <h2 class="seccion-titulo">Mitos y realidades</h2>
+          <p class="mb-0">Conoce información educativa sobre salud sexual.</p>
+        </div>
+      </div>
+    </div>
+
+    <input class="form-control mb-4" id="buscarTema"
+           placeholder="Buscar tema..."
+           oninput="filtrarTemas()">
+
+    <div class="list-group lista-temas" id="listaTemas">
+      <button class="list-group-item text-start" data-tema="embarazo"
+              onclick="verTema('embarazo')">
+        <i class="bi bi-heart-pulse text-danger me-2"></i>
+        Embarazo adolescente <i class="bi bi-chevron-right float-end"></i>
+      </button>
+      <button class="list-group-item text-start" data-tema="metodos"
+              onclick="verTema('metodos')">
+        <i class="bi bi-shield-check text-danger me-2"></i>
+        Métodos anticonceptivos <i class="bi bi-chevron-right float-end"></i>
+      </button>
+      <button class="list-group-item text-start" data-tema="its"
+              onclick="verTema('its')">
+        <i class="bi bi-bandaid text-danger me-2"></i>
+        Infecciones de transmisión sexual (ITS)
+        <i class="bi bi-chevron-right float-end"></i>
+      </button>
+      <button class="list-group-item text-start" data-tema="relaciones"
+              onclick="verTema('relaciones')">
+        <i class="bi bi-heart text-danger me-2"></i>
+        Relaciones saludables <i class="bi bi-chevron-right float-end"></i>
+      </button>
+      <button class="list-group-item text-start" data-tema="saludmental"
+              onclick="verTema('saludmental')">
+        <i class="bi bi-emoji-smile text-danger me-2"></i>
+        Salud mental y autoestima <i class="bi bi-chevron-right float-end"></i>
+      </button>
+      <button class="list-group-item text-start" data-tema="violencia"
+              onclick="verTema('violencia')">
+        <i class="bi bi-shield-heart text-danger me-2"></i>
+        Violencia en el noviazgo <i class="bi bi-chevron-right float-end"></i>
+      </button>
+      <button class="list-group-item text-start" data-tema="proyecto"
+              onclick="verTema('proyecto')">
+        <i class="bi bi-signpost-split text-danger me-2"></i>
+        Proyecto de vida <i class="bi bi-chevron-right float-end"></i>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section id="centros" class="pantalla">
+  <div class="container contenedor">
+    <div class="titulo-modulo">
+      <h2 class="seccion-titulo"><i class="bi bi-geo-alt-fill"></i>
+        Centros de salud locales</h2>
+      <p class="mb-0">Recursos de atención en Villa Victoria y alrededores.</p>
+    </div>
+
+    <div class="alerta mb-3">
+      <i class="bi bi-info-circle"></i>
+      Activa la ubicación para abrir una búsqueda de centros cercanos.
+      Verifica los datos y horarios antes de acudir.
+    </div>
+
+    <div class="d-flex gap-2 flex-wrap mb-4">
+      <button class="btn btn-verde" onclick="buscarUbicacion()">
+        <i class="bi bi-crosshair"></i> Buscar cerca de mí
+      </button>
+      <button class="btn btn-outline-rosa" onclick="buscarLocalidad()">
+        Buscar por localidad
+      </button>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-lg-7">
+        <div id="listaCentros" class="d-grid gap-3">
+          <article class="tarjeta">
+            <h5 class="fw-bold">Centro de Salud Villa Victoria</h5>
+            <p class="small text-secondary">Villa Victoria, Estado de México</p>
+            <p>Consulta general y orientación sobre servicios preventivos.
+              Confirma disponibilidad directamente con la unidad.</p>
+            <a class="btn btn-outline-success btn-sm"
+               target="_blank" rel="noopener"
+               href="https://www.google.com/maps/search/?api=1&query=Centro+de+Salud+Villa+Victoria+Estado+de+Mexico">
+              Ver ubicación
+            </a>
+          </article>
+          <article class="tarjeta">
+            <h5 class="fw-bold">Unidades de salud del IMSS</h5>
+            <p>Consulta las unidades y servicios disponibles según tu afiliación.</p>
+            <a class="btn btn-outline-success btn-sm"
+               target="_blank" rel="noopener"
+               href="https://www.imss.gob.mx/">Consultar IMSS</a>
+          </article>
+          <article class="tarjeta">
+            <h5 class="fw-bold">Hospitales y servicios públicos</h5>
+            <p>Busca opciones de atención y confirma los servicios disponibles.</p>
+            <a class="btn btn-outline-success btn-sm"
+               target="_blank" rel="noopener"
+               href="https://www.google.com/maps/search/?api=1&query=hospital+Villa+Victoria+Estado+de+Mexico">
+              Buscar hospitales
+            </a>
+          </article>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="mapa">
+          <div>
+            <i class="bi bi-geo-alt-fill"></i>
+            <h5 class="fw-bold mt-2">Mapa de Villa Victoria</h5>
+            <p class="small">Abre el mapa para consultar rutas y ubicaciones.</p>
+            <a class="btn btn-verde"
+               target="_blank" rel="noopener"
+               href="https://www.google.com/maps/search/centros+de+salud+Villa+Victoria+Estado+de+Mexico">
+              Abrir Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="chat" class="pantalla">
+  <div class="container" style="max-width:850px">
+    <button class="btn btn-outline-secondary mb-3"
+            onclick="ir('mitos')">
+      <i class="bi bi-arrow-left"></i> Volver a temas
+    </button>
+    <div class="titulo-modulo">
+      <h2 class="seccion-titulo"><i class="bi bi-chat-dots"></i>
+        Chat de orientación</h2>
+      <p class="mb-0">Espacio educativo para resolver dudas frecuentes.</p>
+    </div>
+
+    <div class="alerta mb-3">
+      Esta versión ofrece respuestas automáticas predefinidas.
+      No es un servicio médico ni un chat con personal profesional.
+    </div>
+
+    <div class="chat-area mb-3" id="chatArea" aria-live="polite">
+      <div class="mensaje mensaje-bot">
+        ¡Hola! Soy el asistente educativo de EducSex.
+        Puedes preguntarme sobre métodos anticonceptivos, ITS,
+        relaciones saludables, embarazo adolescente o centros de salud.
+      </div>
+    </div>
+
+    <form class="d-flex gap-2" onsubmit="enviarChat(event)">
+      <input class="form-control" id="chatInput"
+             placeholder="Escribe tu pregunta..." required>
+      <button class="btn btn-verde" aria-label="Enviar mensaje">
+        <i class="bi bi-send-fill"></i>
+      </button>
+    </form>
+
+    <div class="d-flex gap-2 flex-wrap mt-3">
+      <button class="btn btn-sm btn-outline-success"
+              onclick="preguntaRapida('métodos anticonceptivos')">
+        Métodos anticonceptivos
+      </button>
+      <button class="btn btn-sm btn-outline-success"
+              onclick="preguntaRapida('ITS')">ITS</button>
+      <button class="btn btn-sm btn-outline-success"
+              onclick="preguntaRapida('relaciones saludables')">
+        Relaciones saludables
+      </button>
+    </div>
+  </div>
+</section>
+
+<section id="test" class="pantalla">
+  <div class="container" style="max-width:800px">
+    <div class="titulo-modulo">
+      <h2 class="seccion-titulo"><i class="bi bi-clipboard-check"></i>
+        Test de conocimientos</h2>
+      <p class="mb-0">Responde las preguntas y comprueba lo aprendido.</p>
+    </div>
+
+    <div class="progreso mb-3"><div id="barraProgreso" style="width:0%"></div></div>
+    <p class="text-center text-secondary" id="numeroPregunta">Pregunta 1 de 10</p>
+
+    <div class="tarjeta">
+      <h5 class="fw-bold mb-4" id="preguntaTexto"></h5>
+      <div id="opcionesPregunta"></div>
+      <p id="avisoRespuesta" class="small mt-3" aria-live="polite"></p>
+      <div class="d-flex justify-content-between gap-2 mt-4">
+        <button class="btn btn-outline-secondary" onclick="preguntaAnterior()">
+          Anterior
+        </button>
+        <button class="btn btn-rosa" id="btnSiguiente"
+                onclick="siguientePregunta()">Siguiente</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="detalleTema" class="pantalla">
+  <div class="container contenedor">
+    <button class="btn btn-outline-secondary mb-3"
+            onclick="ir('mitos')">
+      <i class="bi bi-arrow-left"></i> Volver a temas
+    </button>
+    <div class="tarjeta">
+      <div class="row align-items-center g-4">
+        <div class="col-md-5">
+          <img id="temaImagen" src="mitos.jpg"
+               class="hero-img" style="height:270px"
+               alt="Ilustración educativa"
+               onerror="respaldoImagen(this,'bi-book-half')">
+        </div>
+        <div class="col-md-7">
+          <h2 class="seccion-titulo" id="temaTitulo">Tema educativo</h2>
+          <p id="temaIntroduccion"></p>
+        </div>
+      </div>
+      <hr>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <span class="etiqueta mito">Mito</span>
+          <p id="temaMito"></p>
+        </div>
+        <div class="col-md-6">
+          <span class="etiqueta realidad">Realidad</span>
+          <p id="temaRealidad"></p>
+        </div>
+      </div>
+      <div class="alerta mt-3">
+        La información de esta sección es educativa. Para decisiones
+        personales de salud, consulta a un profesional.
+      </div>
+      <button class="btn btn-verde mt-3" onclick="ir('chat')">
+        Tengo una duda
+      </button>
+    </div>
+  </div>
+</section>
+
+<section id="detalleCentro" class="pantalla">
+  <div class="container" style="max-width:850px">
+    <button class="btn btn-outline-secondary mb-3"
+            onclick="ir('centros')">
+      <i class="bi bi-arrow-left"></i> Volver a centros
+    </button>
+    <div class="tarjeta">
+      <h2 class="seccion-titulo" id="centroTitulo">Información del centro</h2>
+      <img src="centro_salud.jpg" class="imagen-centro my-3"
+           alt="Centro de salud"
+           onerror="respaldoImagen(this,'bi-hospital')">
+      <p><i class="bi bi-geo-alt me-2"></i>
+        <strong>Ubicación:</strong> Villa Victoria, Estado de México.
+        Confirma la dirección exacta antes de acudir.</p>
+      <p><i class="bi bi-telephone me-2"></i>
+        <strong>Contacto:</strong> Consulta los medios oficiales de la unidad.</p>
+      <p><i class="bi bi-clock me-2"></i>
+        <strong>Horario:</strong> Verifica el horario vigente con el centro.</p>
+      <h5 class="fw-bold mt-4">Servicios que puedes consultar</h5>
+      <ul>
+        <li>Consulta general.</li>
+        <li>Orientación en salud sexual y reproductiva.</li>
+        <li>Información sobre prevención y planificación familiar.</li>
+        <li>Orientación para encontrar atención especializada.</li>
+      </ul>
+      <a class="btn btn-verde"
+         target="_blank" rel="noopener"
+         href="https://www.google.com/maps/search/?api=1&query=Centro+de+Salud+Villa+Victoria+Estado+de+Mexico">
+        <i class="bi bi-geo-alt-fill"></i> Cómo llegar
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="respuestaChat" class="pantalla">
+  <div class="container" style="max-width:850px">
+    <div class="titulo-modulo">
+      <h2 class="seccion-titulo">Orientación y recursos</h2>
+      <p class="mb-0">Consulta la respuesta y encuentra recursos de apoyo.</p>
+    </div>
+    <div class="tarjeta">
+      <div class="mensaje mensaje-usuario" id="preguntaUsuarioDetalle"></div>
+      <div class="mensaje mensaje-bot" id="respuestaDetalle"></div>
+      <button class="btn btn-verde mt-3" onclick="ir('centros')">
+        Consultar centros de salud
+      </button>
+      <button class="btn btn-outline-rosa mt-3"
+              onclick="ir('chat')">Hacer otra pregunta</button>
+    </div>
+  </div>
+</section>
+
+<section id="resultado" class="pantalla">
+  <div class="container" style="max-width:700px">
+    <div class="tarjeta text-center py-5">
+      <i class="bi bi-trophy-fill resultado-icono"></i>
+      <h1 class="fw-bold mt-3" id="resultadoTitulo">¡Buen trabajo!</h1>
+      <h3 id="resultadoPuntos" class="my-3">Obtuviste 0 de 10 respuestas correctas.</h3>
+      <div class="progreso my-4"><div id="barraResultado" style="width:0%"></div></div>
+      <p id="resultadoMensaje"></p>
+      <button class="btn btn-rosa mt-3" onclick="ir('menu')">
+        Volver al menú
+      </button>
+      <button class="btn btn-outline-rosa mt-3" onclick="iniciarTest()">
+        Repetir test
+      </button>
+    </div>
+  </div>
+</section>
+
+<section id="nosotros" class="pantalla">
+  <div class="container contenedor">
+    <div class="tarjeta">
+      <h2 class="seccion-titulo">Sobre EducSex Villa Victoria</h2>
+      <p>EducSex es una propuesta de plataforma educativa juvenil
+         diseñada para facilitar el acceso a información sobre salud
+         sexual y reproductiva, prevención, bienestar y relaciones
+         saludables.</p>
+      <h5 class="fw-bold">Nuestro objetivo</h5>
+      <p>Promover el conocimiento, la prevención y la toma de decisiones
+         informadas mediante recursos claros y actividades interactivas.</p>
+      <h5 class="fw-bold">Nuestra responsabilidad</h5>
+      <p>Presentar información respetuosa, proteger la privacidad y
+         recomendar servicios profesionales cuando sea necesario.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" class="pantalla">
+  <div class="container" style="max-width:650px">
+    <div class="form-card">
+      <h2 class="seccion-titulo">Contacto</h2>
+      <p>Escribe tus comentarios sobre la plataforma.</p>
+      <form onsubmit="enviarContacto(event)">
+        <label class="form-label">Nombre</label>
+        <input class="form-control mb-3" id="contactoNombre" required>
+        <label class="form-label">Correo electrónico</label>
+        <input class="form-control mb-3" type="email" id="contactoCorreo" required>
+        <label class="form-label">Mensaje</label>
+        <textarea class="form-control mb-3" id="contactoMensaje"
+                  rows="4" required></textarea>
+        <button class="btn btn-verde w-100">Preparar mensaje</button>
+      </form>
+      <p id="contactoAviso" class="mt-3 small" aria-live="polite"></p>
+      <p class="text-secondary small mt-3">
+        Esta demostración no envía mensajes a un servidor.
+      </p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="container">
+    <strong>EducSex Villa Victoria</strong>
+    <p class="mb-1 small">Educación, prevención y bienestar juvenil.</p>
+    <p class="mb-0 small">Proyecto educativo. La información no sustituye
+      la consulta con profesionales de salud.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  const pantallas = document.querySelectorAll(".pantalla");
+
+  function ir(id) {
+  document.querySelectorAll(".pantalla").forEach(p => {
+    p.classList.remove("activa");
+  });
+
+  const destino = document.getElementById(id);
+
+  if (destino) {
+    destino.classList.add("activa");
+    window.scrollTo(0, 0);
+  } else {
+    console.error("No se encontró la pantalla:", id);
+  }
+}
+
+
+  function respaldoImagen(img, icono) {
+    const caja = document.createElement("div");
+    caja.className = "d-flex flex-column align-items-center justify-content-center";
+    caja.style.cssText =
+      "height:" + (img.style.height || "260px") +
+      ";min-height:180px;background:linear-gradient(135deg,#dff9e9,#fff0f5);" +
+      "border-radius:18px;color:#168651;font-size:70px;";
+    caja.innerHTML = '<i class="bi ' + icono + '"></i>' +
+      '<span style="font-size:13px;color:#53645a;margin-top:8px">' +
+      'EducSex Villa Victoria</span>';
+    img.replaceWith(caja);
+  }
+
+  
+  let usuarioActual = null;
+
+  function obtenerUsuarios() {
+    try {
+      return JSON.parse(localStorage.getItem("educsexUsuariosDemo")) || [];
+    } catch {
+      return [];
+    }
+  }
+
+  function registrar(evento) {
+    evento.preventDefault();
+
+    const nombre = document.getElementById("regNombre").value.trim();
+    const edad = Number(document.getElementById("regEdad").value);
+    const correo = document.getElementById("regCorreo").value.trim().toLowerCase();
+    const password = document.getElementById("regPassword").value;
+    const aviso = document.getElementById("registroMensaje");
+
+    if (!nombre || !correo || password.length < 4 || edad < 10 || edad > 100) {
+      aviso.textContent = "Revisa los datos ingresados.";
+      aviso.className = "text-danger small mt-3";
+      return;
+    }
+
+    const usuarios = obtenerUsuarios();
+
+    if (usuarios.some(u => u.correo === correo)) {
+      aviso.textContent = "Ese correo ya está registrado en esta demostración.";
+      aviso.className = "text-danger small mt-3";
+      return;
+    }
+
+    
+    usuarios.push({ nombre, edad, correo, password });
+    localStorage.setItem("educsexUsuariosDemo", JSON.stringify(usuarios));
+
+    aviso.textContent = "Cuenta creada. Ahora puedes iniciar sesión.";
+    aviso.className = "text-success small mt-3";
+    evento.target.reset();
+    setTimeout(() => ir("login"), 900);
+  }
+
+  function iniciarSesion(evento) {
+    evento.preventDefault();
+
+    const correo = document.getElementById("loginCorreo").value.trim().toLowerCase();
+    const password = document.getElementById("loginPassword").value;
+    const usuarios = obtenerUsuarios();
+
+    const usuario = usuarios.find(
+      u => u.correo === correo && u.password === password
+    );
+
+    if (!usuario) {
+      const aviso = document.getElementById("loginMensaje");
+      aviso.textContent = "No se encontró una cuenta con esos datos. Puedes registrarte o entrar como visitante.";
+      aviso.className = "text-danger small mt-3";
+      return;
+    }
+
+    usuarioActual = usuario;
+    actualizarUsuario();
+    ir("menu");
+  }
+
+  function entrarVisitante() {
+    usuarioActual = { nombre: "visitante", visitante: true };
+    actualizarUsuario();
+    ir("menu");
+  }
+
+  function actualizarUsuario() {
+    const nombre = usuarioActual ? usuarioActual.nombre : "visitante";
+    document.getElementById("saludoNombre").textContent = nombre;
+    document.getElementById("accesoNav").classList.toggle("d-none", !!usuarioActual);
+    document.getElementById("registroNav").classList.toggle("d-none", !!usuarioActual);
+    document.getElementById("usuarioNav").classList.toggle("d-none", !usuarioActual);
+    document.getElementById("nombreUsuarioNav").textContent = nombre + " ▾";
+  }
+
+  function cerrarSesion() {
+    usuarioActual = null;
+    actualizarUsuario();
+    ir("inicio");
+  }
+
+  
+  const temas = {
+    embarazo: {
+      titulo: "Embarazo adolescente",
+      imagen: "embarazo.jpg",
+      introduccion: "El embarazo durante la adolescencia puede implicar retos físicos, emocionales, familiares y educativos. La información, la prevención y el acompañamiento profesional son importantes.",
+      mito: "El embarazo adolescente solo ocurre cuando una persona no tiene información.",
+      realidad: "Puede haber diferentes factores. La educación integral, el acceso a servicios de salud y el apoyo sin prejuicios ayudan a prevenir riesgos."
+    },
+    metodos: {
+      titulo: "Métodos anticonceptivos",
+      imagen: "metodosanticonsectivos.jpg",
+      introduccion: "Existen diferentes métodos anticonceptivos. Su elección depende de la salud, las necesidades y las preferencias de cada persona.",
+      mito: "Todos los métodos anticonceptivos protegen contra las infecciones de transmisión sexual.",
+      realidad: "El preservativo ayuda a reducir el riesgo de muchas ITS y de embarazo. Otros métodos previenen el embarazo, pero no protegen contra las ITS."
+    },
+    its: {
+      titulo: "Infecciones de transmisión sexual",
+      imagen: "enfermedades.jpg",
+      introduccion: "Las ITS pueden transmitirse por diferentes tipos de contacto sexual. Algunas no presentan síntomas, por lo que la prevención y las pruebas son importantes.",
+      mito: "Si alguien se ve saludable, no puede tener una ITS.",
+      realidad: "Una persona puede tener una ITS sin síntomas. El personal de salud puede orientar sobre pruebas, prevención y tratamiento."
+    },
+    relaciones: {
+      titulo: "Relaciones saludables",
+      imagen: "relaciones.jpg",
+      introduccion: "Una relación saludable se basa en respeto, comunicación, confianza, libertad y límites personales.",
+      mito: "Los celos y el control son pruebas de amor.",
+      realidad: "El control, las amenazas y la presión no son muestras de amor. Todas las personas tienen derecho a expresar límites y decir que no."
+    },
+    saludmental: {
+      titulo: "Salud mental y autoestima",
+      imagen: "salud.jpg",
+      introduccion: "El bienestar emocional es parte de la salud. Reconocer las emociones y buscar apoyo cuando hace falta puede ayudar.",
+      mito: "Pedir ayuda significa ser débil.",
+      realidad: "Pedir ayuda es una decisión valiente. Se puede acudir a personas de confianza y a profesionales capacitados."
+    },
+    violencia: {
+      titulo: "Violencia en el noviazgo",
+      imagen: "violencia.jpg",
+      introduccion: "La violencia puede manifestarse mediante agresiones físicas, amenazas, humillaciones, presión sexual o control digital.",
+      mito: "La violencia solo existe cuando hay golpes.",
+      realidad: "También puede haber violencia emocional, sexual, económica o digital. Si hay peligro, busca apoyo de una persona de confianza o de los servicios de emergencia."
+    },
+    proyecto: {
+      titulo: "Proyecto de vida",
+      imagen: "proyecto.jpg",
+      introduccion: "Un proyecto de vida ayuda a identificar metas personales, académicas y profesionales y a tomar decisiones informadas.",
+      mito: "Los planes personales nunca pueden cambiar.",
+      realidad: "Las metas pueden ajustarse con el tiempo. La información, el apoyo y la planificación ayudan a avanzar."
+    }
+  };
+
+  
+function verTema(id) {
+  const t = temas[id];
+
+  if (!t) {
+    console.error("No se encontró el tema:", id);
+    return;
+  }
+
+  document.getElementById("temaTitulo").textContent = t.titulo;
+  document.getElementById("temaIntroduccion").textContent = t.introduccion;
+  document.getElementById("temaMito").textContent = t.mito;
+  document.getElementById("temaRealidad").textContent = t.realidad;
+
+  // Actualizar la imagen sin reemplazar el elemento HTML
+  const imagen = document.getElementById("temaImagen");
+  imagen.onerror = null;
+  imagen.src = t.imagen;
+  imagen.onerror = function () {
+    this.onerror = null;
+    this.src =
+      "data:image/svg+xml;charset=UTF-8," +
+      encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="400" height="280" viewBox="0 0 400 280">
+          <rect width="400" height="280" rx="20" fill="#dff9e9"/>
+          <text x="200" y="130" text-anchor="middle"
+                font-size="65" fill="#126b45">♡</text>
+          <text x="200" y="180" text-anchor="middle"
+                font-family="Arial" font-size="23"
+                font-weight="bold" fill="#126b45">EducSex</text>
+          <text x="200" y="210" text-anchor="middle"
+                font-family="Arial" font-size="15"
+                fill="#126b45">Villa Victoria</text>
+        </svg>
+      `);
+  };
+
+  ir("detalleTema");
+}
+
+
+  function filtrarTemas() {
+    const busqueda = document.getElementById("buscarTema").value.toLowerCase();
+    document.querySelectorAll("#listaTemas [data-tema]").forEach(boton => {
+      boton.style.display = boton.textContent.toLowerCase().includes(busqueda)
+        ? "" : "none";
+    });
+  }
+
+  
+  function buscarUbicacion() {
+    if (!navigator.geolocation) {
+      alert("Tu navegador no permite consultar la ubicación.");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      posicion => {
+        const lat = posicion.coords.latitude;
+        const lon = posicion.coords.longitude;
+        window.open(
+          "https://www.google.com/maps/search/centros+de+salud/@" +
+          lat + "," + lon + ",14z",
+          "_blank", "noopener"
+        );
+      },
+      () => alert("No se pudo obtener la ubicación. Puedes buscar por localidad.")
+    );
+  }
+
+  function buscarLocalidad() {
+    const localidad = prompt("Escribe tu localidad o municipio:");
+    if (!localidad || !localidad.trim()) return;
+
+    const busqueda = encodeURIComponent("centros de salud " + localidad.trim());
+    window.open(
+      "https://www.google.com/maps/search/" + busqueda,
+      "_blank", "noopener"
+    );
+  }
+
+  let ultimaPregunta = "";
+
+  function respuestaAutomatica(texto) {
+    const t = texto.toLowerCase();
+
+    if (t.includes("método") || t.includes("anticoncept")) {
+      return "Existen métodos como preservativos, pastillas, implantes y dispositivos intrauterinos. No todos ofrecen protección contra las ITS. Un profesional de salud puede ayudarte a elegir según tus necesidades.";
+    }
+
+    if (t.includes("its") || t.includes("infección")) {
+      return "Muchas ITS pueden prevenirse y tratarse. Algunas no presentan síntomas. El uso correcto del preservativo y la orientación sobre pruebas son medidas importantes. Acude a un centro de salud para recibir asesoría.";
+    }
+
+    if (t.includes("embarazo")) {
+      return "Para prevenir un embarazo, es importante conocer los métodos anticonceptivos y cómo utilizarlos correctamente. Un centro de salud puede ofrecer orientación confidencial según sus políticas y servicios disponibles.";
+    }
+
+    if (t.includes("relación") || t.includes("noviazgo") ||
+        t.includes("celos") || t.includes("violencia")) {
+      return "Una relación saludable se basa en respeto, consentimiento y libertad. Nadie debe presionarte, amenazarte ni controlar tus decisiones. Si te sientes en peligro, busca apoyo de una persona de confianza o de los servicios de emergencia.";
+    }
+
+    if (t.includes("salud mental") || t.includes("autoestima") ||
+        t.includes("triste") || t.includes("ansiedad")) {
+      return "Tus emociones importan. Hablar con una persona de confianza o un profesional puede ayudarte. Si estás en peligro inmediato, contacta a los servicios de emergencia de tu localidad.";
+    }
+
+    if (t.includes("centro") || t.includes("hospital") ||
+        t.includes("ubicación") || t.includes("dónde")) {
+      return "Puedes consultar el módulo Centros de salud para abrir búsquedas de unidades en Villa Victoria y alrededores. Confirma dirección, horario y servicios directamente con cada unidad.";
+    }
+
+    return "Puedo ofrecer información general sobre métodos anticonceptivos, ITS, embarazo adolescente, relaciones saludables, bienestar emocional y centros de salud. ¿Sobre cuál de estos temas te gustaría aprender?";
+  }
+
+  function agregarMensaje(texto, tipo) {
+    const area = document.getElementById("chatArea");
+    const mensaje = document.createElement("div");
+    mensaje.className = "mensaje " +
+      (tipo === "usuario" ? "mensaje-usuario" : "mensaje-bot");
+    mensaje.textContent = texto;
+    area.appendChild(mensaje);
+    area.scrollTop = area.scrollHeight;
+  }
+
+  function procesarPregunta(texto) {
+    if (!texto.trim()) return;
+    ultimaPregunta = texto.trim();
+
+    agregarMensaje(ultimaPregunta, "usuario");
+    const respuesta = respuestaAutomatica(ultimaPregunta);
+    agregarMensaje(respuesta, "bot");
+
+    document.getElementById("preguntaUsuarioDetalle").textContent = ultimaPregunta;
+    document.getElementById("respuestaDetalle").textContent = respuesta;
+  }
+
+  function enviarChat(evento) {
+    evento.preventDefault();
+    const input = document.getElementById("chatInput");
+    const texto = input.value.trim();
+    if (!texto) return;
+
+    procesarPregunta(texto);
+    input.value = "";
+  }
+
+  function preguntaRapida(texto) {
+    procesarPregunta(texto);
+  }
+
+  
+  const preguntas = [
+    {
+      p: "¿Cuál de estos métodos ayuda a reducir el riesgo de muchas ITS?",
+      o: ["Pastillas anticonceptivas", "DIU", "Preservativo", "Implante"],
+      c: 2
+    },
+    {
+      p: "¿Qué es el consentimiento?",
+      o: ["Aceptar por presión", "Un acuerdo libre y voluntario", "No poder cambiar de opinión", "Una obligación de pareja"],
+      c: 1
+    },
+    {
+      p: "¿Qué debes hacer si tienes dudas sobre anticoncepción?",
+      o: ["Confiar en cualquier rumor", "Evitar preguntar", "Consultar personal de salud", "Usar cualquier método sin orientación"],
+      c: 2
+    },
+    {
+      p: "¿Todas las ITS producen síntomas visibles?",
+      o: ["Sí, siempre", "No, algunas pueden ser asintomáticas", "Solo en adolescentes", "Solo al principio"],
+      c: 1
+    },
+    {
+      p: "¿Cuál es una característica de una relación saludable?",
+      o: ["Controlar amistades", "Respetar los límites", "Exigir contraseñas", "Impedir decir no"],
+      c: 1
+    },
+    {
+      p: "¿Qué se recomienda para confirmar información médica?",
+      o: ["Revisar rumores", "Consultar fuentes confiables y profesionales", "Seguir cualquier publicación", "No hacer preguntas"],
+      c: 1
+    },
+    {
+      p: "¿Los métodos anticonceptivos son todos iguales?",
+      o: ["Sí, funcionan exactamente igual", "No, tienen características diferentes", "Todos protegen contra las ITS", "Ninguno requiere orientación"],
+      c: 1
+    },
+    {
+      p: "¿Qué puedes hacer si sufres violencia en el noviazgo?",
+      o: ["Culparte", "Mantenerlo en secreto siempre", "Buscar apoyo seguro", "Aceptar la violencia"],
+      c: 2
+    },
+    {
+      p: "¿Qué ayuda a tomar decisiones informadas?",
+      o: ["Información confiable", "La presión de amistades", "Los mitos", "La desinformación"],
+      c: 0
+    },
+    {
+      p: "¿Qué debes hacer ante una preocupación de salud?",
+      o: ["Autodiagnosticarte siempre", "Ignorarla", "Buscar orientación profesional", "Usar medicamentos de otra persona"],
+      c: 2
+    }
+  ];
+
+  let indicePregunta = 0;
+  let respuestas = Array(preguntas.length).fill(null);
+  let testCalificado = false;
+
+  function iniciarTest() {
+    indicePregunta = 0;
+    respuestas = Array(preguntas.length).fill(null);
+    testCalificado = false;
+    mostrarPregunta();
+    ir("test");
+  }
+
+  function mostrarPregunta() {
+    const q = preguntas[indicePregunta];
+    document.getElementById("numeroPregunta").textContent =
+      "Pregunta " + (indicePregunta + 1) + " de " + preguntas.length;
+    document.getElementById("barraProgreso").style.width =
+      ((indicePregunta + 1) / preguntas.length * 100) + "%";
+    document.getElementById("preguntaTexto").textContent = q.p;
+    document.getElementById("avisoRespuesta").textContent = "";
+    document.getElementById("btnSiguiente").textContent =
+      indicePregunta === preguntas.length - 1 ? "Ver resultado" : "Siguiente";
+
+    const opciones = document.getElementById("opcionesPregunta");
+    opciones.replaceChildren();
+
+    q.o.forEach((opcion, i) => {
+      const boton = document.createElement("button");
+      boton.type = "button";
+      boton.className = "respuesta text-start w-100";
+      boton.textContent = String.fromCharCode(65 + i) + ". " + opcion;
+
+      if (respuestas[indicePregunta] === i) {
+        boton.classList.add("seleccionada");
+      }
+
+      boton.onclick = () => {
+        respuestas[indicePregunta] = i;
+        mostrarPregunta();
+      };
+
+      opciones.appendChild(boton);
+    });
+  }
+
+  function preguntaAnterior() {
+    if (indicePregunta > 0) {
+      indicePregunta--;
+      mostrarPregunta();
+    }
+  }
+
+  function siguientePregunta() {
+    if (respuestas[indicePregunta] === null) {
+      document.getElementById("avisoRespuesta").textContent =
+        "Selecciona una respuesta para continuar.";
+      return;
+    }
+
+    if (indicePregunta < preguntas.length - 1) {
+      indicePregunta++;
+      mostrarPregunta();
+      return;
+    }
+
+    mostrarResultado();
+  }
+
+  function mostrarResultado() {
+    let puntos = 0;
+    preguntas.forEach((q, i) => {
+      if (respuestas[i] === q.c) puntos++;
+    });
+ 
+    const porcentaje = puntos / preguntas.length * 100;
+    document.getElementById("resultadoPuntos").textContent =
+      "Obtuviste " + puntos + " de " + preguntas.length +
+      " respuestas correctas.";
+    document.getElementById("barraResultado").style.width = porcentaje + "%";
+
+    let titulo = "¡Sigue aprendiendo!";
+    let mensaje = "Repasa los módulos y vuelve a intentarlo.";
+
+    if (puntos >= 8) {
+      titulo = "¡Excelente!";
+      mensaje = "Tienes un buen resultado. Sigue consultando información confiable.";
+    } else if (puntos >= 5) {
+      titulo = "¡Vas por buen camino!";
+      mensaje = "Revisa las preguntas y fortalece los temas que necesitas practicar.";
+    }
+
+    document.getElementById("resultadoTitulo").textContent = titulo;
+    document.getElementById("resultadoMensaje").textContent = mensaje;
+    ir("resultado");
+  }
+
+  
+  function enviarContacto(evento) {
+    evento.preventDefault();
+    document.getElementById("contactoAviso").textContent =
+      "Formulario validado. Para enviar el mensaje realmente, necesitarás conectar un servicio de correo o un servidor.";
+    evento.target.reset();
+  }
+
+  
+  actualizarUsuario();
+</script>
+
+</body>
+</html>
